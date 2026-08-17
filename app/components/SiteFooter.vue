@@ -1,66 +1,71 @@
 <script setup lang="ts">
-import gsap from 'gsap'
+import gsap from "gsap";
 
-const root = ref<HTMLElement | null>(null)
-const year = new Date().getFullYear()
+const root = ref<HTMLElement | null>(null);
+const year = new Date().getFullYear();
 
 const cols = [
   {
-    title: 'Fleet',
+    title: "Fleet",
     links: [
-      { to: '/gear', label: 'Everything we own' },
-      { to: '/gear?c=consoles', label: 'Consoles' },
-      { to: '/gear?c=screens', label: 'Screens' },
-      { to: '/gear?c=racing', label: 'Racing' },
-      { to: '/bundles', label: 'Bundles' }
-    ]
+      { to: "/gear", label: "Everything we own" },
+      { to: "/gear?c=consoles", label: "Consoles" },
+      { to: "/gear?c=screens", label: "Screens" },
+      { to: "/gear?c=racing", label: "Racing" },
+      { to: "/bundles", label: "Bundles" },
+    ],
   },
   {
-    title: 'Company',
+    title: "Company",
     links: [
-      { to: '/process', label: 'How it runs' },
-      { to: '/contact', label: 'Contact' },
-      { to: '/process', label: 'Coverage' },
-      { to: '/process', label: 'Care standard' }
-    ]
+      { to: "/process", label: "How it runs" },
+      { to: "/contact", label: "Contact" },
+      { to: "/process", label: "Coverage" },
+      { to: "/process", label: "Care standard" },
+    ],
   },
   {
-    title: 'Support',
+    title: "Support",
     links: [
-      { to: '/quote', label: 'Ask for a quote' },
-      { to: '/contact', label: 'Common questions' },
-      { to: '/contact', label: 'Events and offices' },
-      { to: '/process', label: 'Damage cover' }
-    ]
-  }
-]
+      { to: "/quote", label: "Ask for a quote" },
+      { to: "/contact", label: "Common questions" },
+      { to: "/contact", label: "Events and offices" },
+      { to: "/process", label: "Damage cover" },
+    ],
+  },
+];
 
 useMotionScope(() => {
-  if (prefersReducedMotion()) return
+  if (prefersReducedMotion()) return;
 
-  gsap.from('.fmark span', {
+  gsap.from(".fmark span", {
     yPercent: 108,
     duration: 1.3,
     stagger: 0.045,
-    ease: 'swift',
-    scrollTrigger: { trigger: '.fmark', start: 'top 96%', once: true }
-  })
+    ease: "swift",
+    scrollTrigger: { trigger: ".fmark", start: "top 96%", once: true },
+  });
 
-  gsap.to('.fglow', {
+  gsap.to(".fglow", {
     yPercent: -22,
-    ease: 'none',
-    scrollTrigger: { trigger: root.value, start: 'top bottom', end: 'bottom bottom', scrub: 1 }
-  })
+    ease: "none",
+    scrollTrigger: {
+      trigger: root.value,
+      start: "top bottom",
+      end: "bottom bottom",
+      scrub: 1,
+    },
+  });
 
-  gsap.from('.fcol', {
+  gsap.from(".fcol", {
     y: 26,
     autoAlpha: 0,
     duration: 1,
     stagger: 0.08,
-    ease: 'swift',
-    scrollTrigger: { trigger: '.fgrid', start: 'top 90%', once: true }
-  })
-}, root)
+    ease: "swift",
+    scrollTrigger: { trigger: ".fgrid", start: "top 90%", once: true },
+  });
+}, root);
 </script>
 
 <template>
@@ -70,10 +75,20 @@ useMotionScope(() => {
     <div class="wrap-wide">
       <div class="ftop">
         <div class="fintro">
-          <NuxtImg class="fcrest" src="/mark.png" width="180" height="180" alt="Campdawn" format="webp" quality="92" loading="lazy" />
+          <NuxtImg
+            class="fcrest"
+            src="/mark.png"
+            width="180"
+            height="180"
+            alt="Campdawn"
+            format="webp"
+            quality="92"
+            loading="lazy"
+          />
           <p class="eyebrow">Campdawn rentals</p>
           <p class="fline">
-            Gaming gear, delivered clean, built for you and collected when the fun is over.
+            Gaming gear, delivered clean, built for you and collected when the
+            fun is over.
           </p>
           <MagneticEl :strength="0.24">
             <NuxtLink to="/quote" class="btn btn_primary">
@@ -99,8 +114,13 @@ useMotionScope(() => {
           <div class="fcol">
             <p class="mono ftitle">Elsewhere</p>
             <ul>
-              <li v-for="s in ['Instagram', 'TikTok', 'Discord', 'YouTube']" :key="s">
-                <a class="flink" href="#" @click.prevent>
+              <li v-for="s in ['Instagram', 'TikTok']" :key="s">
+                <a
+                  class="flink"
+                  :href="`https://${s.toLowerCase()}.com/${s === 'TikTok' ? '@' : ''}campdawn_esports`"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <span>{{ s }}</span>
                   <Icon name="lucide:arrow-up-right" />
                 </a>
@@ -115,7 +135,9 @@ useMotionScope(() => {
       </div>
 
       <div class="fbase">
-        <p class="mono dim">© {{ year }} Campdawn rentals limited · Awoshie, Accra</p>
+        <p class="mono dim">
+          © {{ year }} Campdawn rentals limited · Awoshie, Accra
+        </p>
         <div class="fbase_links">
           <a href="#" class="mono dim" @click.prevent>Terms</a>
           <a href="#" class="mono dim" @click.prevent>Privacy</a>
@@ -123,7 +145,12 @@ useMotionScope(() => {
         </div>
         <p class="mono dim fbuilt">
           Built by
-          <a href="https://desmondgbedemah.online" target="_blank" rel="noopener">Desmond Gbedemah</a>
+          <a
+            href="https://desmondgbedemah.online"
+            target="_blank"
+            rel="noopener"
+            >Desmond Gbedemah</a
+          >
         </p>
       </div>
     </div>
@@ -146,7 +173,11 @@ useMotionScope(() => {
   width: min(110vw, 1400px);
   height: 60vh;
   transform: translateX(-50%);
-  background: radial-gradient(50% 50% at 50% 50%, rgba(124, 92, 255, 0.28), transparent 70%);
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(124, 92, 255, 0.28),
+    transparent 70%
+  );
   filter: blur(30px);
   pointer-events: none;
 }
@@ -169,7 +200,9 @@ useMotionScope(() => {
   height: auto;
   margin-bottom: 1.6rem;
   filter: drop-shadow(0 0 32px rgba(248, 201, 63, 0.25));
-  transition: transform 0.6s var(--e-out), filter 0.6s var(--e-out);
+  transition:
+    transform 0.6s var(--e-out),
+    filter 0.6s var(--e-out);
 }
 
 .fcrest:hover {
@@ -255,7 +288,11 @@ useMotionScope(() => {
 }
 
 .fmark:hover span {
-  background: linear-gradient(180deg, var(--ion) 0%, rgba(248, 201, 63, 0.1) 100%);
+  background: linear-gradient(
+    180deg,
+    var(--ion) 0%,
+    rgba(248, 201, 63, 0.1) 100%
+  );
   background-clip: text;
   -webkit-background-clip: text;
 }
