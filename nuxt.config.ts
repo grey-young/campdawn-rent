@@ -56,6 +56,13 @@ export default defineNuxtConfig({
     ],
   },
 
+  // Static/SPA deploy (ssr: false) has no Nitro server, so the default IPX
+  // provider's /_ipx/* routes 404 in production. Sources in public/ are already
+  // optimized .webp — serve them directly.
+  image: {
+    provider: "none",
+  },
+
   icon: {
     mode: "svg",
     serverBundle: "local",
