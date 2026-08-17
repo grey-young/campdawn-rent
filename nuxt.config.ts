@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   modules: ["@nuxt/icon", "@nuxt/image", "@nuxt/fonts", "@nuxtjs/seo"],
 
   css: ["~/assets/css/main.css"],
+  ssr: false,
 
   site: {
     url: "https://rent.campdawnesports.com",
